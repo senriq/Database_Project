@@ -29,9 +29,9 @@ Create Table Pokemon (
     DoesEvolve char(1),
     HP int,
     T_ID Varchar(2),
-    FOREIGN KEY (T_ID) REFERENCES Poke_Type(T_ID),
+    FOREIGN KEY (T_ID) REFERENCES P2T(T_ID),
     G_ID Varchar (1),
-    FOREIGN KEY (G_ID) REFERENCES Generation(G_ID) 
+    FOREIGN KEY (G_ID) REFERENCES P2G(G_ID) 
 );
 
 Create Table P2T (
@@ -126,6 +126,7 @@ Insert into Generation
 Values('9', 'Paldea', '2022-11-18', null);
 
 Select * from Generation;
+
 
 Insert into Pokemon
 Values('0004', 'Charmander', 8.5, 0.6, 1, 39, 'FI', '1');
@@ -253,6 +254,12 @@ Values('0943', 'Shroodle', 0.7, 0.2, 1, 40, 'PO', '9');
 Insert into Pokemon
 Values('0944', 'Grafaiai', 27.2, 0.7, 0, 63, 'PO', '9');
 
-Select * from pokemon;
---Insert into Generation
---Values('', '', , , 1, , '', '');
+Select * from Pokemon;
+
+Select 'Pokemon with Highest HP' from Dual;
+Select P_Name, HP
+from Pokemon
+Where HP = (Select MAX(HP)from Pokemon);
+
+Select 'Total Pokemons of XX Type' from Dual;
+Select Count(*) from Pokemon where T_ID = 'FI';
