@@ -40,7 +40,7 @@ Create Table Pokemon (
     P_Name Varchar(20),
     Weight Decimal(6,2),
     Height Decimal(6,2),
-    DoesEvolve char(1),
+    DoesEvolve int,
     HP int,
     T_ID Varchar(2),
     FOREIGN KEY (T_ID) REFERENCES Poke_Type(T_ID),
@@ -295,7 +295,7 @@ Values('0944', 'Grafaiai', 27.2, 0.7, 0, 63, 'PO', '9', 'GE');
 
 Select * from Pokemon;
 
-
+-- Aggregate functions
 Select 'Pokemon with Highest HP' from Dual;
 Select P_Name, HP
 from Pokemon
@@ -304,11 +304,17 @@ Where HP = (Select MAX(HP)from Pokemon);
 Select 'Total Fire Type Pokemon' from Dual;
 Select Count(*) from Pokemon where T_ID = 'FI';
 
--- Delete 
-Delete from Pokemon 
-Where P_ID = '0944';
-
+-- Update and delete record
+Update Pokemon 
+Set Weight = 58.3
+Where P_ID = '0681';
 Select * from Pokemon;
+
+Delete from Pokemon 
+Where P_ID = '0681';
+Select * from Pokemon;
+
+-- Print all other tables
 Select * from Nature;
 Select * from Stats;
 Select * from Generation;
